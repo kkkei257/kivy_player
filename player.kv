@@ -1,0 +1,399 @@
+#:kivy 1.0
+#:import kivy kivy
+#:import main main
+
+Player
+
+<Player>:
+    canvas:
+        Color:
+            rgb: 1, .9, .5
+        Rectangle:
+#            source: 'images/background.jpg'
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+        padding: '8dp'
+        spacing: '8dp'
+
+#        ActionBar:
+#            size_hint_y: 0.1
+#            ActionView:
+#                ActionPrevious:
+#                    title: 'player'
+#                    with_previous: False
+ 
+        # オプション類
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+
+
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+            
+            
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+
+
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                
+
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+            
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                
+            
+            # ファイル選択
+            Button:
+                id: button_select
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_release: root.buttonSelect()
+                Image:
+                    source: "image/folder.png"
+                    pos: self.parent.x + self.parent.width / 4 , self.parent.y
+                    size: self.parent.width * 0.7, self.parent.height * 0.7
+                    allow_stretch: True
+            
+            # 歌詞の表示/非表示
+            Button:
+                id: button_lrc
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_press: root.startTime()
+                on_release: root.buttonLrc()
+                Image:
+                    source: "image/lrc.png"
+                    pos: self.parent.x + self.parent.width / 4 , self.parent.y
+                    size: self.parent.width * 0.7, self.parent.height * 0.7
+                    allow_stretch: True
+                    
+ 
+        
+        # アルバムアートと歌詞の表示
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            bar_width: 4
+            
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, root.background_through)
+                Rectangle:
+                    source: root.background
+                    pos: self.pos
+                    size: self.size
+                    #size: (root.width, root.height * 0.9)                
+
+            Label:
+                size_hint_x: 1.0
+                size_hint_y: None
+                id: lrc_text
+                font_size: 40
+                text_size: self.width, None
+                height: self.texture_size[1]
+                text: root.text
+                color: root.lrc_r, root.lrc_g, root.lrc_b, root.lrc_through
+        
+        
+        # 楽曲情報
+        Label:
+            id: label
+            size_hint_y: 0.1
+            font_size: 50
+            text: ""
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            center: root.center
+            color: 1, 0.6, 0,  1
+
+
+        # シークバー
+        Slider:
+            id: slider
+            size_hint_y: .1
+            max: 0
+            value: 0
+            cursor_height: 70
+            cursor_width: 70
+            cursor_image: "image/circle2.png"
+            on_value: root.slide()
+            
+        
+        # 時間表示
+        BoxLayout:
+            size_hint_y: .03
+            
+            # 再生時間
+            Label:
+                id: current_time
+                size_hint_x: .5
+                font_size: 40
+                color: 1, 0.6, 0,  1
+                text: ""
+                
+            # レイアウト用
+            Label:
+                size_hint_x: 1
+                text: ""
+                
+            # 曲の長さ
+            Label:
+                id: length
+                size_hint_x: .5
+                font_size: 40
+                color: 1, 0.6, 0,  1
+                text: ""
+               
+        # レイアウト用
+        Label:
+            size_hint_y: .05
+            text: ""
+             
+        
+        # ボタン類
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            # 前の楽曲へ
+            Button:
+                id: button_back
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_release: root.buttonBack()
+                Image:
+                    source: "image/back.png"
+                    pos: self.parent.x + self.parent.width / 3 , self.parent.y + 10
+                    size: self.parent.width * 0.7, self.parent.height * 0.7
+                    allow_stretch: True
+
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+            
+            
+            # 再生ボタン
+            Button:
+                id: button_play
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_release: root.buttonPlay()
+                Image:
+                    source: root.image_play
+                    pos: self.parent.x + self.parent.width / 3 , self.parent.y + 10
+                    size: self.parent.width * 0.7, self.parent.height * 0.7
+                    allow_stretch: True
+
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                
+
+            # 次の楽曲へ
+            Button:
+                id: button_next
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_release: root.buttonNext()
+                Image:
+                    source: "image/next.png"
+                    pos: self.parent.x + self.parent.width / 3 , self.parent.y + 10
+                    size: self.parent.width * 0.7, self.parent.height * 0.7
+                    allow_stretch: True
+            
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                
+            Button:
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                
+            
+            # リストボタン
+            Button:
+                id: button_list
+                size_hint_y: 1
+                background_normal: ""
+                background_color: 1, 1, 1, 0
+                on_release: root.buttonList()
+                Image:
+                    source: "image/list.png"
+                    pos: self.parent.x + self.parent.width / 4 , self.parent.y + 10
+                    size: self.parent.width * 0.6, self.parent.height * 0.6
+                    allow_stretch: True
+                
+
+# リストのポップアップ
+<PopupList>:
+    canvas:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    orientation: "vertical"
+ 
+    # ポップアップウィンドウ
+    BoxLayout:
+        orientation: 'vertical'
+        size: self.size
+        
+        Label:
+            size_hint_y: 0.1
+            text: ""
+        
+        Button:
+            id: track_back
+            size_hint_y: 1
+            background_normal: ""
+            background_color: 1, 1, 1, 0
+            on_release: root.buttonUp()
+            Image:
+                source: "image/up.png"
+                pos: self.parent.x + self.parent.width / 4 , self.parent.y + 10
+                size: self.parent.width * 0.5, self.parent.height * 0.5
+                allow_stretch: True
+        
+        Button:
+            size_hint_y: 1
+            id: track_1
+            text: root.track_1
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_1_color, root.track_1_color, root.track_1_color, 1
+            on_release: root.buttonTrack(0)
+
+        Button:
+            size_hint_y: 1
+            id: track_2
+            text: root.track_2
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_2_color, root.track_2_color, root.track_2_color, 1
+            on_release: root.buttonTrack(1)
+
+        Button:
+            size_hint_y: 1
+            id: track_3
+            text: root.track_3
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_3_color, root.track_3_color, root.track_3_color, 1
+            on_release: root.buttonTrack(2)
+
+        Button:
+            size_hint_y: 1
+            id: track_4
+            text: root.track_4
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_4_color, root.track_4_color, root.track_4_color, 1
+            on_release: root.buttonTrack(3)
+
+        Button:
+            size_hint_y: 1
+            id: track_5
+            text: root.track_5
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_5_color, root.track_5_color, root.track_5_color, 1
+            on_release: root.buttonTrack(4)
+            
+        Button:
+            size_hint_y: 1
+            id: track_6
+            text: root.track_6
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_6_color, root.track_6_color, root.track_6_color, 1
+            on_release: root.buttonTrack(5)
+            
+        Button:
+            size_hint_y: 1
+            id: track_7
+            text: root.track_7
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            background_color: root.track_7_color, root.track_7_color, root.track_7_color, 1
+            on_release: root.buttonTrack(6)
+            
+        Button:
+            id: track_next
+            size_hint_y: 1
+            background_normal: ""
+            background_color: 1, 1, 1, 0
+            on_release: root.buttonDown()
+            Image:
+                source: "image/down.png"
+                pos: self.parent.x + self.parent.width / 4 , self.parent.y + 10
+                size: self.parent.width * 0.5, self.parent.height * 0.5
+                allow_stretch: True
+            
+        Label:
+            size_hint_y: 0.1
+            text: ""
+        
+    
+    # キャンセルボタン
+    BoxLayout:
+        size_hint: 1, .1
+        Button:
+            text: "Cancel"
+            background_color: 0,.5,1,1
+            on_release: root.cancel()
+
+
+# ファイル選択のポップアップ
+<PopupChooseFile>:
+    canvas:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    orientation: "vertical"
+    
+    # ポップアップウィンドウ
+    FileChooserIconView:
+        size_hint: 1, .9
+        path: root.current_dir
+        on_submit: root.select(self.selection[0])
+    
+    # キャンセルボタン
+    BoxLayout:
+        size_hint: 1, .1
+        Button:
+            text: "Cancel"
+            background_color: 0,.5,1,1
+            on_release: root.cancel()
