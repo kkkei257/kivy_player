@@ -79,7 +79,7 @@ ScrollView:
         color: root.lrc_r, root.lrc_g, root.lrc_b, root.lrc_through
 ~~~
 
-<br>余談：<br>
+余談：<br>
 初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、Androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することもできたりと色々と便利です。
 
 スクリーンショット：<br>
