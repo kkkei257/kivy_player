@@ -1,7 +1,7 @@
 # kivy_player
 
 ## 概要
-Kivyを用いて音楽プレーヤーを作成しました。macOSとAndroidで動作確認済みです。<br><br>
+Kivyを用いて音楽プレーヤーを作成しました。macOSとAndroidで動作確認済みです(フォント等のサイズは適宜変更して下さい)。<br><br>
 
 ・再生/一時停止ボタンを押すと楽曲の再生（再生中の場合は一時停止）、＞ボタンで次のトラック、＜ボタンで前のトラックを再生することができます。
 
@@ -55,7 +55,7 @@ def position(self, *arg):
 また楽曲と同じ名前のtxtファイルがあれば楽曲再生時にtxtファイル内の文字列が歌詞としてアルバムアート上に表示されます（txtファイルが存在しなければ表示されない）。歌詞は右上のアイコンを押すことで非表示にすることも可能です。
 
 <br>余談：<br>
-初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することができます。
+初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、Androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することもできたりと色々と便利です。
 
 
 <img src="screenshot1.png" width="33%"> <img src="screenshot2.png" width="33%"> <img src="screenshot3.png" width="33%">
