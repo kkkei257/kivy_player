@@ -53,6 +53,31 @@ def position(self, *arg):
 <br>
 ・アルバムアートについては指定したフォルダ内に楽曲と同じ名前のjpgファイルがあればそれを読み出し、なければフォルダ内に存在するjpgファイルを、画像データが存在しなければimageフォルダ内にあるデフォルトの画像を読み込むようになっています。そのため好きな画像をアルバムアートとして表示できます。<br>
 また楽曲と同じ名前のtxtファイルがあれば楽曲再生時にtxtファイル内の文字列が歌詞としてアルバムアート上に表示されます（txtファイルが存在しなければ表示されない）。歌詞は右上のアイコンを押すことで非表示にすることも可能です。
+~~~
+# アルバムアートと歌詞の表示
+ScrollView:
+    do_scroll_x: False
+    do_scroll_y: True
+    bar_width: 4
+
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, root.background_through)
+        Rectangle:
+            source: root.background
+            pos: self.pos
+            size: self.size
+
+    Label:
+        size_hint_x: 1.0
+        size_hint_y: None
+        id: lrc_text
+        font_size: 40
+        text_size: self.width, None
+        height: self.texture_size[1]
+        text: root.text
+        color: root.lrc_r, root.lrc_g, root.lrc_b, root.lrc_through
+~~~
 
 <br>余談：<br>
 初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、Androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することもできたりと色々と便利です。
