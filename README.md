@@ -82,5 +82,5 @@ ScrollView:
 <br>余談：<br>
 初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、Androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することもできたりと色々と便利です。
 
-<br>スクリーンショット：<br>
+スクリーンショット：<br>
 <img src="screenshot1.png" width="33%"> <img src="screenshot2.png" width="33%"> <img src="screenshot3.png" width="33%">
