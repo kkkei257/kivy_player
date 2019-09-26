@@ -4,6 +4,32 @@
 Kivyを用いて音楽プレーヤーを作成しました。macOSとAndroidで動作確認済みです(フォント等のサイズは適宜変更して下さい)。また音楽ファイルについては動作の関係上oggファイルを推奨します。<br><br>
 
 ・再生/一時停止ボタンを押すと楽曲の再生（再生中の場合は一時停止）、＞ボタンで次のトラック、＜ボタンで前のトラックを再生することができます。
+~~~
+def buttonPlay(self):
+"""再生ボタンクリック時"""
+
+try:
+    if not Holder.getStatus() == "" and not Holder.getStatus() == "play":
+        # 再生中でなければ
+        try:
+            pygame.mixer.music.play(0, Holder.getSlideValue())
+            Clock.schedule_interval(self.position, 0.1)
+            self.image_play = "image/pause.png"
+            Holder.setStatus("play")
+
+        except:
+            pass
+
+    else:                
+        Holder.setSlideValue(self.ids.slider.value)
+        pygame.mixer.music.pause()
+        self.image_play = "image/play.png"
+        Clock.unschedule(self.position)
+        Holder.setStatus("pause")
+
+except:
+    pass
+ ~~~
 
 ・右下のアイコンは再生リストでこのボタンを押すと再生リストを表示させることができます。再生リストにおいて曲名を選択するとその曲を再生することができます。
 
