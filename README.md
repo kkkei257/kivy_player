@@ -1,6 +1,9 @@
 # kivy_player
 
 ## 概要
+<br>スクリーンショット：<br>
+<img src="screenshot1.png" width="33%"> <img src="screenshot2.png" width="33%"> <img src="screenshot3.png" width="33%">
+
 Kivyを用いて音楽プレーヤーを作成しました。macOSとAndroidで動作確認済みです(フォント等のサイズは適宜変更して下さい)。また音楽ファイルについては動作の関係上oggファイルを推奨します。<br><br>
 
 ・再生/一時停止ボタンを押すと楽曲の再生（再生中の場合は一時停止）、＞ボタンで次のトラック、＜ボタンで前のトラックを再生することができます。
@@ -108,5 +111,3 @@ ScrollView:
 余談：<br>
 初めは音楽ファイルの再生にvlcのMediaPlayerを使用しようと思っていたのですが、Androidでプログラムを実行する際にエラーが出てしまったのでpygameのmixerを用いています。pygame.mixer.music.play()の引数に再生位置を与えることで任意の位置から再生することもできたりと色々と便利です。
 
-<br>スクリーンショット：<br>
-<img src="screenshot1.png" width="33%"> <img src="screenshot2.png" width="33%"> <img src="screenshot3.png" width="33%">
