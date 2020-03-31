@@ -23,6 +23,7 @@ from kivy.properties import StringProperty, ListProperty, ObjectProperty
 from kivy.utils import get_color_from_hex
 from kivy.resources import resource_add_path
 from kivy.factory import Factory
+from kivy.clock import Clock
 
 import os
 import csv
@@ -247,7 +248,11 @@ class Player(BoxLayout):
         
     # アプリ実行時の初期化の処理
     def __init__(self, **kwargs):
-        super(Player, self).__init__(**kwargs)        
+        super(Player, self).__init__(**kwargs)
+        Clock.schedule_once(self.on_start)
+
+        
+    def on_start(self, *args):
         self.ids.current_time.text = "00:00"
         self.ids.length.text = "00:00"
         
@@ -286,8 +291,7 @@ class Player(BoxLayout):
             self.ids.lrc_text.text = ""
             Holder.setFileName("")
             Holder.setFilePath("")
-
-        
+            
         
     def buttonSelect(self):
         """Choose File押下時に呼び出され、ポップアップでファイル選択させる"""
