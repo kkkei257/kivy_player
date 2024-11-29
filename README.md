@@ -1,4 +1,4 @@
-# kivy_player
+# kivy_player（2019年）
 
 ## 概要
 <br>スクリーンショット：<br>
